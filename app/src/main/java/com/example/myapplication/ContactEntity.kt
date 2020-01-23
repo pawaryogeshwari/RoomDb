@@ -8,5 +8,9 @@ import androidx.room.PrimaryKey
 data class ContactEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    @ColumnInfo(name = "NAME")var name:String)
+    @ColumnInfo(name = "NAME")var name:String,
+    @ColumnInfo(name = "IMAGE")var img:String
+
+    )
+
 

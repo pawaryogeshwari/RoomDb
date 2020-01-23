@@ -40,8 +40,7 @@ class MainActivity : AppCompatActivity() {
             mdb = AppDatabase.getInstance(this)
            val contacts = mdb.contactDao().getContact()
 
-
-          runOnUiThread {
+            runOnUiThread {
               madapter.addAll(contacts)
               madapter.notifyDataSetChanged()
                Log.d("listOfContact",""+contacts)
