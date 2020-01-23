@@ -34,6 +34,8 @@ class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         holder.contactname.text = this!!.data!![position].name
+
+        Glide.with(this!!.context!!).load(this!!.data!![position].img).into(holder.image)
     }
 
     private var context:Context? = null
@@ -46,9 +48,11 @@ class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity
 
     }
     inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+
     {
         internal var contactname = itemView.findViewById<View>(R.id.tv_name) as TextView
-        internal var image = itemView.findViewById<View>(R.id.ivProfile)
+        internal var image = itemView.findViewById<View>(R.id.ivcontactPic) as ImageView
+
     }
 
 }

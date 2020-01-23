@@ -56,8 +56,9 @@ class AddContactActivity:AppCompatActivity() {
 
                 username  = addContact.text.toString()
 
+                var img  = image
 
-                val addContact = ContactEntity(0, username!!, this!!.image!!)
+                val addContact = ContactEntity(0, username!!, img!!)
 
                 mdb!!.contactDao().addContact(addContact)
 
@@ -119,8 +120,13 @@ class AddContactActivity:AppCompatActivity() {
                 if (requestCode == SELECTIMAGE)
                 {
                     val selectedImageUri = data!!.data
-
                     ivProfile.setImageURI(selectedImageUri)
+                    val bitmap = getContactBitmapFromURI(this, Uri.parse(selectedImageUri.toString()))
+                    val folderPath = saveBitmapIntoSDCardImage(this, bitmap!!)
+                    image = folderPath.toString()
+                    ivProfile.setImageBitmap(bitmap)
+
+
 
                 }
 
