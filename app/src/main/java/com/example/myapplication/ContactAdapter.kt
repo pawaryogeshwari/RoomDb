@@ -13,8 +13,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import java.net.URL
 
-class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity>?): RecyclerView.Adapter<ContactAdapter.MyViewHolder>()
+class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity>?,listener:OnClickContact): RecyclerView.Adapter<ContactAdapter.MyViewHolder>()
 {
+
+    var list = listener
+
 
     fun addAll(contact: List<ContactEntity>) {
         data!!.addAll(contact)
@@ -35,6 +38,8 @@ class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity
 
         holder.contactname.text = this!!.data!![position].name
 
+        list.viewInfo(this!!.data!!)
+
         Glide.with(this!!.context!!).load(this!!.data!![position].img).into(holder.image)
     }
 
@@ -53,6 +58,12 @@ class ContactAdapter(mContext:Context,private var data:MutableList<ContactEntity
         internal var contactname = itemView.findViewById<View>(R.id.tv_name) as TextView
         internal var image = itemView.findViewById<View>(R.id.ivcontactPic) as ImageView
 
+    }
+
+
+    interface OnClickContact{
+
+        fun viewInfo(contact:MutableList<ContactEntity>)
     }
 
 }

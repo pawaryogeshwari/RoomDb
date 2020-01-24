@@ -48,6 +48,7 @@ class AddContactActivity:AppCompatActivity() {
            intent.type = "image/*"
            intent.action = Intent.ACTION_GET_CONTENT
            startActivityForResult(Intent.createChooser(intent, "Select Picture"),SELECTIMAGE)
+
        }
 
         btn_save.setOnClickListener {
@@ -87,8 +88,6 @@ class AddContactActivity:AppCompatActivity() {
 
     }
 
-
-
     fun saveBitmapIntoSDCardImage(context: Context, finalBitmap: Bitmap): File {
         val mFolder = File("${getExternalFilesDir(null)?.absolutePath}/sample")
         val imgFile = File(mFolder.absolutePath + "/${System.currentTimeMillis()}.png")
@@ -98,6 +97,7 @@ class AddContactActivity:AppCompatActivity() {
         if (!imgFile.exists()) {
             imgFile.createNewFile()
         }
+
 
         try {
             val out = FileOutputStream(imgFile)

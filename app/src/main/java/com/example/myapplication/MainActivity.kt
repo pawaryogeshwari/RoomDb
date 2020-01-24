@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_contact.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,ContactAdapter.OnClickContact{
+    override fun viewInfo(contact: MutableList<ContactEntity>) {
+
+
+    }
 
     lateinit var madapter: ContactAdapter
     var contactname: String? = null
@@ -29,9 +33,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-        madapter = ContactAdapter(this, mutableListOf())
+        madapter = ContactAdapter(this, mutableListOf(),this)
         rv_list.adapter = madapter
 
 
